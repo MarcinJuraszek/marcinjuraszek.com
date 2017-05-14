@@ -8,13 +8,13 @@ A lot of LINQ to XML questions on StackOverflow are being answered using `Descen
 <!--more-->
 But before I answer the question we have to say how does `Descendants()` really works and how it differs from `Elements()` method. Let’s start with MSDN description of both methods:
 
-    `XContainer.Elements` Method (`XName`):
-    Returns a filtered collection of the **child** elements of this element or document, in document order. Only elements that have a matching `XName` are included in the collection.
+> `XContainer.Elements` Method (`XName`):
+> Returns a filtered collection of the **child** elements of this element or document, in document order. Only elements that have a matching `XName` are included in the collection.
 
 <!-- -->
 
-    `XContainer.Descendants` Method (`XName`):
-    Returns a filtered collection of the **descendant** elements for this document or element, in document order. Only elements that have a matching `XName` are included in the collection.
+> `XContainer.Descendants` Method (`XName`):
+> Returns a filtered collection of the **descendant** elements for this document or element, in document order. Only elements that have a matching `XName` are included in the collection.
 
 They differ by only one word: **child** in `Elements()` and **descendants** in `Descendants()`. What does it actually mean? Consider following XML document:
 
@@ -70,7 +70,7 @@ The difference is clear: `Descendants()` returns **all descendant element**, no 
 
 OK, get back to the main questions:
 
-##Why shouldn’t you use `Descendants()` method?
+## Why shouldn’t you use `Descendants()` method?
 
 ### 1. Because it may have poor performance:
 
