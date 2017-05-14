@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /about-me/
 ---
 
 My name is Marcin Juraszek and I’m a Software Enginneer. I blog mostly about programming: open source projects I started and/or contribute to, interesting problems I find on [stackoverflow](http://stackoverflow.com/) and those I face myself during my coding.
