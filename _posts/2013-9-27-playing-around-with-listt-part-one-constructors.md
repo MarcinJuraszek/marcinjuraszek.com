@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Playing around with List<T>, part one: Constructors
+title: Playing around with List<T>, part one - Constructors
 excerpt_separator: <!--more-->
 ---
 
