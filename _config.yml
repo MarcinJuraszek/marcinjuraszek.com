@@ -54,7 +54,6 @@ baseurl: ""
 #
 
 permalink: pretty
-relative_permalinks: true
 
 paginate:         5
 
