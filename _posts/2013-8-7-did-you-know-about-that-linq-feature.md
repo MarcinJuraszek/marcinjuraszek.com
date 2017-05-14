@@ -1,11 +1,14 @@
 ---
 layout: post
-title: You're up and running!
+title: Did you know about that LINQ feature? I guess you didn’t!
+excerpt_separator: <!--more-->
 ---
 
 First of all, I have to say *thank you!* [Toto](http://stackoverflow.com/users/2071634/toto) for [Most optimized use of multiple Where statements](http://stackoverflow.com/q/18080998/1163867) StackOverflow question and hatchet for really great answer, which made me write this blog post.
 
 The question is simple: **does LINQ optimize multiple Where calls?** I think most people would say no. I did say no too! Google says no - unless you dig really deep! But what is the correct answer to that question?
+
+<!--more-->
 
 Simple IL digging says no as well:
 
