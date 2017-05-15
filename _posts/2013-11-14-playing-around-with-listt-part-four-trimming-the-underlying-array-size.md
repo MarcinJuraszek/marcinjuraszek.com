@@ -1,6 +1,6 @@
 ---
 layout: post
-title:Playing around with List&lt;T&gt;, part four - trimming the underlying array size
+title: test!
 excerpt_separator: <!--more-->
 ---
 
