@@ -10,7 +10,7 @@ Another blog post in response to a StackOverflow question. It’s about LINQ aga
 
 To answer the question, let’s start with some sample data we could fight against, starting with Person class:
 
-```
+```csharp
 public class Person
 {
     public string FirstName { get; set; }
@@ -25,7 +25,7 @@ And a tree-like structure with just one root element and some leafs:
 
 Here is a little bit more developer-friendly representation of the structure above:
 
-```
+```csharp
 var Jon = new Person
 {
     FirstName = "Jon", LastName = "F",
@@ -74,7 +74,7 @@ It’s time to do some really programming now. First of all, we need a way to tr
 
 The extension method itself is quite simple:
 
-```
+```csharp
 public static IEnumerable<T> Traverse<T>(this T source, Func<T, IEnumerable<T>> childrenSelector, TraverseType type)
 {
     if (childrenSelector == null)
@@ -98,7 +98,7 @@ public static IEnumerable<T> Traverse<T>(this T source, Func<T, IEnumerable<T>> 
 
 The internal implementations aren’t complicated either:
 
-```
+```csharp
 private static IEnumerable<T> TraversePreOrder<T>(T source, Func<T, IEnumerable<T>> childrenSelector)
 {
     // return current node itself
@@ -143,13 +143,13 @@ private static IEnumerable<T> TraversePostOrder<T>(IEnumerable<T> source, Func<T
 
 And an example of usage:
 
-```
+```csharp
 var family = Jon.Traverse(x => x.Children, MyEnumerable.TraverseType.PreOrder)
 ```
 
 I’m gonna end with a trivia question: What’s the difference between the two traverse types? The first one returns current node before going into its children. The second one go down the structure first and then returns current node. Why is the difference important? Consider following piece of code:
 
-```
+```csharp
 var postJon = Jon.Traverse(x => x.Children, MyEnumerable.TraverseType.PostOrder).First().LastName;
 var preJon = Jon.Traverse(x => x.Children, MyEnumerable.TraverseType.PreOrder).First().LastName;
 ```

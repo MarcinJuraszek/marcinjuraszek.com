@@ -30,7 +30,7 @@ First of all, I went through [Contributing Guidelines](https://github.com/fsproj
 
 But anyway, I worked on that folder organization support item for two days, to come up with working code! You can see my first commit to forked codebase here: [Folder organization support](https://github.com/MarcinJuraszek/VisualFSharpPowerTools/commit/88123b37328e47c2f6bd757f693f5518efd6faaf). As you can see, **there is a lot of comments from other contributions**, even before a pull request was made! And most important, they are all really valuable. My first attempt contained following peace of code:
 
-```
+```fsharp
 let isCommandEnabled action = 
     let items = getSelectedItems()
     let projects = getSelectedProjects()
@@ -45,7 +45,7 @@ let isCommandEnabled action =
 
 If you’re at least a little bit familiar with F# you may think: **Why is he doing it that crazy way?!** Well, I’m asking myself exact same question now :) But thanks to [Vasily Kirichenko](https://github.com/vasily-kirichenko) now I know it should be done this way:
 
-```
+```fsharp
 let isCommandEnabled action = 
     let items = getSelectedItems()
     let projects = getSelectedProjects()
@@ -59,7 +59,7 @@ let isCommandEnabled action =
 
 Another example is all about knowing language features and standard libraries which comes with language itself. That’s probably the most problematic part of switching to/learning new language. You may quickly catch up with new syntax, but unless you know most popular and useful libraries used with that language, you’re not as productive as you could be in well-known environment **You write code which works, but is much more complicated than it’s necessary.** I got a really good example of that.
 
-```
+```fsharp
 let private getSelected<'T> (dte:DTE2) =
     let items = dte.ToolWindows.SolutionExplorer.SelectedItems :?> UIHierarchyItem[]
     items
@@ -71,7 +71,7 @@ let private getSelected<'T> (dte:DTE2) =
 
 Looks fine, works fine, but it does not mean it is fine. That’s because F# has another method in `Seq` module to perform exactly that kind of selection. It’s called `Seq.choose`:
 
-```
+```fsharp
 let private getSelected<'T> (dte:DTE2) =
     let items = dte.ToolWindows.SolutionExplorer.SelectedItems :?> UIHierarchyItem[]
     items

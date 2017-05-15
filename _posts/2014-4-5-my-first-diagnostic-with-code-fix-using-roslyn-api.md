@@ -10,7 +10,7 @@ I think everyone already knows that during //Build conference Anders Hejlsbe
 
 Roslyn code published on codeplex contains not only the Roslyn API. It also contains couple new, **not yet official and published C# language feature**. One of them is called Declaration Expressions, and allows you e.g. to declare variable as part of method call, which is **quite useful when dealing with out arguments**. Consider common way of using `int.TryParse` method:
 
-```
+```csharp
 int value;
 if(int.TryParse(input, out value))
 {
@@ -20,7 +20,7 @@ if(int.TryParse(input, out value))
 
 right now, with Declaration Expression feature you can declare value within `TryParse` method call itself:
 
-```
+```csharp
 if(int.TryParse(input, out int value))
 {
     // (...)
@@ -37,7 +37,7 @@ When you create a project using that template you’ll get two files: `CodeFixPr
 
 By default, `DiagnosticAnalyzer` class implements `ISymbolAnalyzer`. Unfortunately, that’s not the one we need for our project. **We want to analyze Syntax nodes, not symbols.** To do that, we have to use `ISyntaxNodeAnalyzer<SyntaxKind>`. Let’s change the interface and adopt string literals to match out new Diagnostic.
 
-```
+```csharp
 [DiagnosticAnalyzer]
 [ExportDiagnosticAnalyzer(DiagnosticId, LanguageNames.CSharp)]
 public class DiagnosticAnalyzer : ISyntaxNodeAnalyzer
@@ -62,7 +62,7 @@ public class DiagnosticAnalyzer : ISyntaxNodeAnalyzer
 
 First of all, we have to declare what kind of syntax nodes we are interested in. **You can use [Roslyn Syntax Visualizer](http://roslyn.codeplex.com/wikipage?title=Syntax%20Visualizer&referringTitle=Home) to see what kind of nodes you can choose from.** For our project, we’re only interested in method arguments, which is represented by `SyntaxKind.Argument`:
 
-```
+```csharp
 public ImmutableArray SyntaxKindsOfInterest
 {
     get
@@ -74,7 +74,7 @@ public ImmutableArray SyntaxKindsOfInterest
 
 Now, lets implement `AnalyzeNode` method, which is being called by IDE every time one of syntax nodes set we set using `SyntaxKindsOfInterest` appears in users source code. Starting from beginning, we need to **make sure we’re dealing with method call argument, which uses out modifier and does not use Declaration Expression** feature.
 
-```
+```csharp
 // check if we're dealing with method argument with out keyqord
 // which does not use DeclarationExpression
 var argument = node as ArgumentSyntax;
@@ -87,7 +87,7 @@ Because we’re going to have quite few conditional expressions like this one, w
 
 Now, as we know the variable used as out method parameter, **let’s find place where it’s declared**. Because we’re going to need that functionality again within code fix, lets close it within static helper method.
 
-```
+```csharp
 public static VariableDeclaratorSyntax GetDeclaration(ArgumentSyntax argument, SemanticModel semanticModel, CancellationToken cancellationToken, out SymbolInfo? info)
 {
     info = null;
@@ -114,7 +114,7 @@ It uses `SemanticModel` to find, if the identifier is a local variable (that’s
 
 `VariableDeclaratorSyntax` represents one variable declaration, which is exactly what we’re looking for. Now, we can use that method to get declaration syntax for the argument we’re analyzing:
 
-```
+```csharp
 var declarator = GetDeclaration(argument, semanticModel, cancellationToken, out SymbolInfo? info);
 if (!info.HasValue || declarator == null)
     return;
@@ -122,7 +122,7 @@ if (!info.HasValue || declarator == null)
 
 We also need to make sure, that variable used as method call argument is not used in place, which would be out of scope after introducing Declaration Expression. To do so, we need to **find all places variable is being used**, and check if they fall within new scope span. I decided to simply travers the syntax tree instead of using more high-level APIs, like Workspace API. **For local variable, we can narrow search scope to nearest statement containing variable declaration.**
 
-```
+```csharp
 // get containing statement for our variable declaration
 var declaratorStatement = declarator.Parent.Parent;
 var statement = GetContainingStatement(declaratorStatement);
@@ -152,7 +152,7 @@ if (usages.All(x => span.Contains(x.Span)))
 
 GetContainingStatement is declared as:
 
-```
+```csharp
 public static SyntaxNode GetContainingStatement(SyntaxNode node)
 {
     var parent = node.Parent;
@@ -168,7 +168,7 @@ That will make wavy, green underline appear under every method call argument wit
 
 There are two parts of CodeFixProvider you have to write. First one is `GetFixesAsync` async method, where we should get all necessary info about position diagnostic is being invoke in, and create `CodeAction` which will **perform a fix when invoked by user**.
 
-```
+```csharp
 public async Task<IEnumerable<CodeAction>> GetFixesAsync(Document document, TextSpan span, IEnumerable<Diagnostic> diagnostics, CancellationToken cancellationToken)
 {
     var root = await document.GetSyntaxRootAsync(cancellationToken);
@@ -189,7 +189,7 @@ public async Task<IEnumerable<CodeAction>> GetFixesAsync(Document document, Text
 
 It’s quite easy. Just **get syntax nodes we need** (argument and declaration) and **declare an action delegate**. Action itself is much more interesting.
 
-```
+```csharp
 private async Task<Document> UseDeclarationExpression(Document document, ArgumentSyntax argument, VariableDeclaratorSyntax declarator,
     CancellationToken cancellationToken)
 {

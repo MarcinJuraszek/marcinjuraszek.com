@@ -10,7 +10,7 @@ After a while I finally found some time to write another post about `List<T>` in
 
 It may be a little bit surprising, but there are actually three `GetEnumerator()` methods within `List<T>` class. That’s because both `IEnumerable.GetEnumerator(` and `IEnumerable<T>.GetEnumerator()` methods are implemented [explicitly](http://msdn.microsoft.com/en-us/library/vstudio/ms173157.aspx) (and there is another one, not connected to any of the interfaces):
 
-```
+```csharp
 public List<T>.Enumerator GetEnumerator()
 {
     return new List<T>.Enumerator(this);
@@ -31,13 +31,13 @@ As you can see, they all have exactly the same content. They differ only on the 
 
 As you may already notice, the real enumeration happens in internal type named `List<T>.Enumerator`.
 
-```
+```csharp
 public struct Enumerator : IEnumerator<T>, IDisposable, IEnumerator
 ```
 
 It has to implement both `IEnumerator` and `IEnumerator<T>` because of method above. Sounds easy, but it gives us a lot more responsibilities to remember about: all properties and methods we have to implement because of these interfaces. The most important are `Current` property and `MoveNext()` method. They are used to perform the enumerator. How are they implemented? 
 
-```
+```csharp
 internal Enumerator(List<T> list)
 {
     this.list = list;
@@ -68,7 +68,7 @@ For now, just skip `version` and `MoveNextRare()` usages. Everything important 
 
 There is also an explicit `IEnumerator.Current` implementation:
 
-```
+```csharp
 object IEnumerator.Current
 {
     get
@@ -92,7 +92,7 @@ You can't modify the collection while enumerating it. Every change made to the s
 
 Really simple, isn't it? It's even simple to read from code then from description:
 
-```
+```csharp
 private bool MoveNextRare()
 {
     if (this.version != this.list._version)
@@ -107,7 +107,7 @@ private bool MoveNextRare()
 
 `List<T>._version` field is initialized with 0 on the constructor and is updated by every method that really changed the collection: `Add`, `Clear`, `Insert`, `InsertRange`, `RemoveAll`, `RemoveAt`, `RemoveRange`, `Reverse`, `Sort` and indexing property setter. The setter example:
 
-```
+```csharp
 public T this[int index]
 {
     get
@@ -132,7 +132,7 @@ Another interesting detail: Both `IEnumerator` and `IEnumerator<T>` define `Rese
 
 Looks like that's why the method is implemented explicitly, so you can't use it without casting the enumerator to one of the interfaces.
 
-```
+```csharp
 void IEnumerator.Reset()
 {
     if (this.version != this.list._version)
@@ -146,7 +146,7 @@ void IEnumerator.Reset()
 
 At the end, I'd like to answer the question, why the fact that `List<T>.Enumerator` is a struct really matters. Consider following code:
 
-```
+```csharp
 var list = new List<int>(1) { 3 };
 using (var e = list.GetEnumerator())
 {

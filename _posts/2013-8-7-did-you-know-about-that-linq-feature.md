@@ -12,7 +12,7 @@ The question is simple: **does LINQ optimize multiple Where calls?** I think mo
 
 Simple IL digging says no as well:
 
-```
+```csharp
 var input = new List();
 
 var output = input.Where(x => x.StartsWith("test"))
@@ -22,7 +22,7 @@ var output = input.Where(x => x.StartsWith("test"))
 
 It generates following intermidiate language instructions:
 
-```
+```csharp
 IL_0000: newobj instance void class [mscorlib]System.Collections.Generic.List`1::.ctor()
 IL_0005: stloc.0
 IL_0006: ldloc.0
@@ -64,7 +64,7 @@ It’s clear: they are three `Enumerable.Where()` method calls there. However, *
 
 The most important thing is really the mysterious class called `WhereEnumerableIterator`. Why is it that important? Because that’s what you really get when calling `IEnumerable.Where()`.
 
-```
+```csharp
 public static IEnumerable Where(this IEnumerable source, Func predicate)
 {
     // (...)
@@ -74,7 +74,7 @@ public static IEnumerable Where(this IEnumerable source, Func predicate)
 
 So we have to change our question. It’s now: **How is `WhereEnumerableIterator.Where()` implemented?** And here we go. The magic happens here!
 
-```
+```csharp
 public override IEnumerable Where(Func predicate)
 {
     return new Enumerable.WhereEnumerableIterator(this.source, Enumerable.CombinePredicates(this.predicate, predicate));
@@ -83,7 +83,7 @@ public override IEnumerable Where(Func predicate)
 
 As you can see, there is no iteration here, no foreach loop or anything like that. **The only thing that really happens here is the predicate combination!** Quite clever, isn’t it? So let’s reconsider chaining call from the first example.
 
-```
+```csharp
 var output = input.Where(x => x.StartsWith("test"))
                   .Where(x => x.Length > 10)
                   .Where(x => !x.EndsWith("test"));
@@ -91,7 +91,7 @@ var output = input.Where(x => x.StartsWith("test"))
 
 At first glance, it seems to iterate over entire input collection with first predicate, then over that results with the second one and after that the third iteration should happen. What really happens here is:
 
-```
+```csharp
 foreach(string item in input)
 {
     if(item.StartsWith("test") && item.Length > 10 && !item.EndsWith("test"))
@@ -101,7 +101,7 @@ foreach(string item in input)
 
 Just one iteration over source collection, all predicates combined into one! The same thing is done for chained Select calls, using `WhereSelectEnumerableIterator`. The optimization goes even further: there are separated implementation for `Array` and `List`: `WhereArrayIterator`, `WhereListIterator`, `WhereSelectArrayIterator` and `WhereSelectListIterator`.
 
-```
+```csharp
 if (source is TSource[])
     {
         return new Enumerable.WhereArrayIterator((TSource[])source, predicate);

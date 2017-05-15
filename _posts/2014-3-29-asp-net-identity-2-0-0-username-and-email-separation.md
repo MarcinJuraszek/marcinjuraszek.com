@@ -22,7 +22,7 @@ Starting with the registration page, lets extend sample code in all necessary pl
 
 #### RegistrerViewModel class
 
-```
+```csharp
 public class RegisterViewModel {
 
     [Required]
@@ -33,7 +33,7 @@ public class RegisterViewModel {
 
 #### Register.cshtml view
 
-```
+```xml
 <!-- (...) -->
 <div class="form-group">
     @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
@@ -46,7 +46,7 @@ public class RegisterViewModel {
 
 #### AccountController.Register(RegisterViewModel model) method
 
-```
+```csharp
 // (...)
 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
 // (...)
@@ -71,7 +71,7 @@ Everything seems to work fine, but when you try to log with changes like that, y
 
 #### LoginViewModel class
 
-```
+```csharp
 public class LoginViewModel {
     [Required]
     [Display(Name = "User Name")]
@@ -89,7 +89,7 @@ public class LoginViewModel {
 
 #### Login.cshtml view
 
-```
+```xml
                 <!-- (...) -->
                 <div class="form-group">
                     @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
@@ -103,7 +103,7 @@ public class LoginViewModel {
 
 #### AccountController.Login(LoginViewModel model, string returnUrl) method
 
-```
+```csharp
 [HttpPost]
 [AllowAnonymous]
 [ValidateAntiForgeryToken]
@@ -136,7 +136,7 @@ Another part of account management we’re going to work on is password recovery
 
 #### ForgotPasswordViewModel class
 
-```
+```csharp
 public class ForgotPasswordViewModel {
     [Required]
     [Display(Name = "User Name")]
@@ -151,7 +151,7 @@ public class ForgotPasswordViewModel {
 
 #### ForgotPassword.cshtml view
 
-```
+```xml
 <!-- (...) -->
 <h4>Enter your username and email.</h4>
 <hr />
@@ -167,7 +167,7 @@ public class ForgotPasswordViewModel {
 
 #### AccountController.ForgotPassword() method
 
-```
+```csharp
 public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
 {
     if (ModelState.IsValid)

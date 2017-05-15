@@ -10,7 +10,7 @@ First non LINQ-related question on my blog, but another one in response to great
 
 Getting back to question. Author posted following code and simply asked, how can it be done better?
 
-```
+```csharp
 class Test<T> where T : struct, IConvertible
 {
     public static T TestFunction(T x)
@@ -29,7 +29,7 @@ But there are some assumptions that have to be made before any work can be done 
 
 My first thought was, let’s use [Expression Tree](http://msdn.microsoft.com/en-us/library/bb397951.aspx) to compile proper conversion code at runtime. The response I come with is:
 
-```
+```csharp
 class Test<T> where T : struct, IConvertible
 {
     private static Func<int, T> _getInt;
@@ -64,7 +64,7 @@ T to int conversion time in ms
 
 As you can see, the results are quite clear. The fastest way to convert `int `to `T` is definitely the one using Expression Tree:
 
-```
+```csharp
 private static class TestClass<T> where T : IConvertible
 {
     static Func<T, int> _getInt;
@@ -91,7 +91,7 @@ private static class TestClass<T> where T : IConvertible
 
 However, the opposite direction conversion is faster when standard `ToInt32` method is being called:
 
-```
+```csharp
 private static class TestClass<T> where T : IConvertible
 {
     public static int GetInt(T x)

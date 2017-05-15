@@ -18,7 +18,7 @@ But before I answer the question we have to say how does `Descendants()` really 
 
 They differ by only one word: **child** in `Elements()` and **descendants** in `Descendants()`. What does it actually mean? Consider following XML document:
 
-```
+```xml
 <?xml version="1.0"?>
 <PurchaseOrder PurchaseOrderNumber="99503" OrderDate="1999-10-20">
   <Address Type="Shipping">
@@ -34,7 +34,7 @@ They differ by only one word: **child** in `Elements()` and **descendants** in
 
 And a simple method:
 
-```
+```csharp
 Console.WriteLine("Descendants:");
 Console.WriteLine();
 foreach (var item in doc.Descendants())
@@ -76,7 +76,7 @@ OK, get back to the main questions:
 
 `Descendants()` always **traverses down whole document tree** starting from current element. It results in a set of unnecessary items being checked. As long as you’re able to precisely specify location of elements you’re looking for you should do that and use `Element()`/`Elements()` instead.
 
-```
+```xml
 <?xml version="1.0"?>
 <PurchaseOrder PurchaseOrderNumber="99503" OrderDate="1999-10-20">
   <Address Type="Shipping">
@@ -114,7 +114,8 @@ OK, get back to the main questions:
 ```
 
 Let’s query the document for all item comments. It can be easily done using `Descendants()`:
-```
+
+```csharp
 var comments = doc.Descendants("Comment")
                     .Select(c => (string)c)
                     .ToList();
@@ -122,7 +123,7 @@ var comments = doc.Descendants("Comment")
 
 It produces expected results and returns a list with just one element. However, it is highly inefficient! **It will go through every XML node within whole document** (they are 27 nodes in that document) and check, if the node name matches “Comment”. Are all these checks necessary? No, they aren’t. Because we know how the document is structured, we can do following:
 
-```
+```csharp
 var comments = doc.Root.Element("Items")
                         .Elements("Item")
                         .Elements("Comment")
@@ -136,7 +137,7 @@ It returns the same results, but it will perform much better, because e.g. it wo
 
 Using `Descendants()` may be risky when you’re not aware how it really works or your document structure can change in time. Consider situation, when another nodes are added into document from previous examples. But they are not item comments. They are added into addresses, e.g. to indicate preferred time of delivery:
 
-```
+```xml
 <?xml version="1.0"?>
 <PurchaseOrder PurchaseOrderNumber="99503" OrderDate="1999-10-20">
   <Address Type="Shipping">
@@ -182,7 +183,7 @@ The first query from previous example will not return correct results any more! 
 
 I think it’s the case that `Descendants()` is design to be used for. File system content XML file is a great example of XML document you should definitely query using `Descendants()`:
 
-```
+```xml
 <Dir Name="Tmp">
   <Dir Name="ConsoleApplication1">
     <Dir Name="bin">
@@ -250,7 +251,7 @@ I think it’s the case that `Descendants()` is design to be used for. File syst
 
 Looking for all files with cs extension? Nothing easier than that!
 
-```
+```csharp
 var csFiles = doc.Descendants("File")
                  .Select(f => (string)f.Element("Name"))
                  .Where(n => n.EndsWith(".cs"))

@@ -12,7 +12,7 @@ In my previous post I wrote about [solution-wide Rename Code Fix using Roslyn](h
 
 When implementing `ICodeFixProvider.GetFixesAsync` method, which returns `Task<IEnumerable<CodeAction>>` you have couple possible ways to return `CodeAction` class instance. That’s because `CodeAction.Create` factory method has couple overloads you can choose from:
 
-```
+```csharp
 public static CodeAction Create(string description, Document changedDocument)
 public static CodeAction Create(string description, Solution changedSolution)
 public static CodeAction Create(string description, IEnumerable<CodeActionOperation> operations)
@@ -23,7 +23,7 @@ public static CodeAction Create(string description, Func<CancellationToken, Task
 
 As you can see, there is pair of methods with **one taking object** (modified solution, document or set of operations to perform) and **another one taking delegate which returns a task typed to return the same object**. You may expect, that under the hoods, they should both be somehow modified to follow the same path during further execution. And you are correct. Look at `Solution` and `Func<CancellationToken, Task<Solution>>` pair implementation:
 
-```
+```csharp
 public static CodeAction Create(string description, Func<CancellationToken, Task<Solution>> createChangedSolution)
 {
     if (description == null)
@@ -40,7 +40,7 @@ public static CodeAction Create(string description, Func<CancellationToken, Task
 }
 ```
 
-```
+```csharp
 public static CodeAction Create(string description, Solution changedSolution)
 {
     if (description == null)
@@ -73,7 +73,7 @@ It depends. In cases when your Code Fix is really simple, e.g. you’re just mov
 
 Because of all the reasons above, I modified `AsyncMethodNameFix` to use proper `CodeAction.Create` overload. Final code is:
 
-```
+```csharp
 return new[] {  CodeAction.Create("Change method name to '" + newName + "'.",  (ct) => Renamer.RenameSymbolAsync(solution, symbol, newName, options, ct))};
 ```
 

@@ -18,7 +18,7 @@ As mentioned before, you can already **add a folder to F# project manually modif
 
 If you look into project file itself, either using different editor or using *Unload Project -> Edit ***.fsproj* you’ll see that it’s just an XML file with different kind of information about your project. A part which is important in our case it this one:
 
-```
+```xml
     <ItemGroup>
         <Compile Include="Library1.fs" />
         <None Include="Script.fsx" />
@@ -27,7 +27,7 @@ If you look into project file itself, either using different editor or using *Un
 
 It contains list of files project is build from, in exact **same order they appear in Solution Explorer** window. The only thing you have to do to add a folder it change that part of XML file. Let’s say I’d like to have folder called Utile as the first item in the project. It will be a place to store all utility and helper modules for my library. To start slowly, just two files to begin with: `Math.fs` and `Reflection.fs`:
 
-```
+```xml
     <ItemGroup>
         <Compile Include="Utils\\Reflection.fs" />
         <Compile Include="Utils\\Math.fs" />
@@ -51,7 +51,7 @@ C:\Program Files (x86)\Microsoft SDKs\F#\3.1\Framework\v4.0\fsc.exe -o:obj\Debug
 
 To change that order, you have to modify project file again, and move some files around. But, you have to keep files from the same directory together. That’s why in out sample, you can’t make `Library1.fs` compile before `Reflection.fs` but after `Math.fs`:
 
-```
+```xml
     <ItemGroup>
         <Compile Include="Utils\\Math.fs" />
         <Compile Include="Library1.fs" />
@@ -78,7 +78,7 @@ OK, so now you know how to add folders to F# project let’s talk about the othe
 
 That’s probably the most crazy behavior I’ve run into. **Folder names must be unique within the entire project!** Yes, you read it correctly, unique within the entire project. It means considering following folder structure:
 
-```
+```xml
     <ItemGroup>
         <Compile Include="Utils\Helpers\ReflectionHelper.fs" />
         <Compile Include="Utils\Reflection.fs" />

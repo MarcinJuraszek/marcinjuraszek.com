@@ -10,7 +10,7 @@ The last part of the series was all about increasing underlying array size. This
 
 To do that, we have to look for all possible ways you can remove elements from `List<T>`. Actually, there are only few of them:
 
-```
+```csharp
 public void Clear()
 public bool Remove(T item)
 public int RemoveAll(Predicate<T> match)
@@ -20,7 +20,7 @@ public void RemoveRange(int index, int count)
 
 I don’t want to just copy-past code from all these methods, but I’m afraid I have no choice :) And that’s because **all these methods are really straight forward**. Starting from the easiest one:
 
-```
+```csharp
 public void Clear()
 {
     if (this._size > 0)
@@ -36,7 +36,7 @@ As you can see it’s really simple. It doesn’t do anything more then just cal
 
 Going further to `Remove()`, `RemoveAt()` and `RemoveRange()`:
 
-```
+```csharp
 public bool Remove(T item)
 {
     int num = this.IndexOf(item);
@@ -82,7 +82,7 @@ I feel they should be discussed together, because one uses the other internally 
 
 Last but not least (and also most interesting one): `RemoveAll()`:
 
-```
+```csharp
 public int RemoveAll(Predicate<T> match)
 {
     // parameters checks removed
@@ -120,7 +120,7 @@ As you can see, it's a little bit more complicated, but if you dig into it it's 
 
 As you can see, non of the methods changes underlying array size. It means, you can still have really huge amount of memory allocated even if the list contains only few elements. Is there any way to force the array size change? Yes, and No... Yes, because there is a `TrimExcess` method, which seems to do that. And No, because it actually don't always do that!
 
-```
+```csharp
 public void TrimExcess()
 {
     int num = (int)((double)this._items.Length * 0.9);

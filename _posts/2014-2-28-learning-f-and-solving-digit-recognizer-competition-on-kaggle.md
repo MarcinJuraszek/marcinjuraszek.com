@@ -16,7 +16,7 @@ Expanding that to more than 2 coordinates for each point we get
 
 Which can be easy translated into F# code using Array.map2 and Array.sum calls
 
-```
+```fsharp
 > let distance P Q = Array.sum (Array.map2 (fun p q -> (p-q)*(p-q)) P Q);;
 
 val distance : P:int [] -> Q:int [] -> int
@@ -24,7 +24,7 @@ val distance : P:int [] -> Q:int [] -> int
 
 I decided to skip square root, because it’s not the value what matters, but difference between distances, so square root is not important at all. But getting back to F#, as you can see, evaluating function declaration in F# Interactive window prints function parameter types. In that case, we have **a method which takes two `int[]` arrays and return an `int` value**, which is how much different the arrays are. Lets try the function and check if it works fine:
 
-```
+```fsharp
 > distance [| 0;1;2 |] [| 4;3;2 |];;
 val it : int = 20
 ```
@@ -41,7 +41,7 @@ Moving on, we can start reading our data. To property prepare training and valid
 
 So lets create a function for each of these points, starting from the very last one. But before that, we have to declare type to store the items.
 
-```
+```fsharp
 > type Item = { Value:int; Pixels:int[] };;
 
 type Item =
@@ -51,7 +51,7 @@ Pixels: int [];}
 
 and now the functions:
 
-```
+```fsharp
 > let getRecord (x:int[]) = { Value = x.[0]; Pixels = x.[1..] };;
 
 val getRecord : x:int [] -> Item
@@ -79,7 +79,7 @@ val readAllLines : p:string -> string []
 
 Everything looks pretty straightforward, doesn’t it? Now, we can combine all these functions into one, which will take a file path and return array of items.
 
-```
+```fsharp
 >
 let readItemsFromFile p =
     (readAllLines p)
@@ -93,7 +93,7 @@ val readItemsFromFile : p:string -> Item []
 
 And yes, F# compiler can easily figure out that `readItemsFromFile` takes a `string` and returns `Item[]` array :) 14 lines of code which give you really powerful functionality. That’s amazing. But don’t stop here. We should push it further and actually how good the classifier is.< Starting with loading training data 
 
-```
+```fsharp
 > let trainingData = readItemsFromFile “C:\\trainingsample.csv”;;
 
 val trainingData : Item [] =
@@ -170,7 +170,7 @@ Pixels =
 
 Next thing we need is `getNearest` function, which will get from array of Item the one which is closest to searched one.
 
-```
+```fsharp
 >
 let getNearestItem v t =
     t
@@ -181,7 +181,7 @@ val getNearestItem : v:Item -> t:Item [] -> Item
 
 Now lets do the same with validation data, but instead of just loading it, I’m going to **get the nearest `Item` from `trainingData` set too**, to make next steps easier.
 
-```
+```fsharp
 >  type ItemWithNearest = { Value:int; Closest:int};;
 
 type ItemWithNearest =
@@ -323,7 +323,8 @@ Closest = 9;}; ...|]
 ```
 
 OK, we are almost there. Now we just have to count number of items with correct prediction and divide it by total number of elements, to get percentage of correct classifications.
-```
+
+```fsharp
 >
 let percentOfCorrect =
     let positive =

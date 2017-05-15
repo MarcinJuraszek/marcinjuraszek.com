@@ -8,7 +8,7 @@ This time I’ll try to examine how are all search-related methods in `List<T>` 
 
 <!--more-->
 
-```
+```csharp
 public bool Exists(Predicate<T> match)
 public T Find(Predicate<T> match)
 public List<T> FindAll(Predicate<T> match)
@@ -29,7 +29,7 @@ public int LastIndexOf(T item, int index, int count)
 
 But as soon as you start looking inside the code, you can realize that most of them are implemented using other ones, either just adding some default parameter values, checking what is the return value they produce or passing the program flow to `Array.IndexOf`/`Array.LastIndexOf` methods. At the end there are just 5 methods which actually do something interesting:
 
-```
+```csharp
 public T Find(Predicate<T> match)
 public List<T> FindAll(Predicate<T> match)
 public int FindIndex(int startIndex, int count, Predicate<T> match)
@@ -39,7 +39,7 @@ public int FindLastIndex(int startIndex, int count, Predicate<T> match)
 
 And as you can imagine, they all are pretty straight forward. I’m gonna list just two of them here:
 
-```
+```csharp
 public T Find(Predicate<T> match)
 {
     // parameter check skipped
@@ -55,7 +55,7 @@ public T Find(Predicate<T> match)
 }
 ```
 
-```
+```csharp
 public int FindIndex(int startIndex, int count, Predicate<T> match)
 {
     // parameter checks skipped

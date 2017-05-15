@@ -30,7 +30,7 @@ After doing so you could see new file in solution explorer
 
 Function I’d like to compile to JavaScript is really simple
 
-```
+```typescript
 function longerThan10(value: string): boolean {
     return value.length > 10;
 }
@@ -53,7 +53,7 @@ So we have the packages declared and they are successfully added into the soluti
 
 Final *gruntfile.js* content should be as follows:
 
-```
+```javascript
 // This file in the main entry point for defining grunt tasks and using grunt plugins.
 // Click here to learn more. http://go.microsoft.com/fwlink/?LinkID=513275&clcid=0x409
 
@@ -104,7 +104,7 @@ and new file should show up in Solution Explorer
 
 It will contain our TypeScript function compiled to JavaScript:
 
-```
+```javascript
 function longerThan10(value) {
     return value.length > 10;
 }

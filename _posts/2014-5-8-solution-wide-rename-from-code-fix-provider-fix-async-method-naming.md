@@ -16,7 +16,7 @@ Idea is very simple: Diagnostic checks every declared method and makes sure, tha
 
 Diagnostic part of the problem if extremely simple. The only thing you have to do, is check if method declaration contains `async` modifier, and if its name ends with Async. That’s it:
 
-```
+```csharp
 public override void AnalyzeNode(SyntaxNode node, SemanticModel semanticModel, Action<Location, object[]> addDiagnostic, CancellationToken cancellationToken)
 {
     var methodDeclaration = node as MethodDeclarationSyntax;
@@ -35,7 +35,7 @@ Method signature differs from the default one you get when implementing `ISyntax
 
 Second part of the store is also not very complicated. The most important peace is the renaming process. Fortunately, Roslyn API provides great solution-wide refactoring experience, which includes *Rename* option. It’s exposed by static class named `Renamer` which can be found in `Microsoft.CodeAnalysis.Rename` namespace. Method we care about is, as you’d probably expect, called `RenameSymbolAsync`:
 
-```
+```csharp
 public static async Task<Solution> RenameSymbolAsync(
     Solution solution,
     ISymbol symbol,
@@ -46,7 +46,7 @@ public static async Task<Solution> RenameSymbolAsync(
 
 Now, the only thing we have to do is get all necessary data to make `Renamer.RenameSymbolAsync` call. Starting with `ISymbol` symbol:
 
-```
+```csharp
 public async override Task<IEnumerable<CodeAction>> GetFixesAsync(Document document, TextSpan span, IEnumerable<Diagnostic> diagnostics, CancellationToken cancellationToken)
 {
     var root = await document.GetSyntaxRootAsync(cancellationToken);
@@ -67,7 +67,7 @@ public async override Task<IEnumerable<CodeAction>> GetFixesAsync(Document docum
 
 All these `null` checks may not be necessary, but just to be safe… Lets move on to `Solution` instance, `OptionsSet` and new method name:
 
-```
+```csharp
     var project = document.Project;
     if (project == null)
         return null;
@@ -82,13 +82,13 @@ All these `null` checks may not be necessary, but just to be safe… Lets move o
 
 Now, we’re ready to call `Rename` method. But remember – almost entire Roslyn API uses immutable data model, which means instead of modifying instances, you’re getting new ones when content updated. There is no difference here. `Rename` method returns new instance of `Solution` class without modifying the one provided as method parameter:
 
-```
+```csharp
     var newSolution = await Renamer.RenameSymbolAsync(solution, symbol, newName, options);
 ```
 
 As we’ve now defined how solution should look like after we fix it, we can return `CodeAction` back to IDE:
 
-```
+```csharp
     return new[] { CodeAction.Create("Change method name to '" + newName + "'.", newSolution) };
 ```
 

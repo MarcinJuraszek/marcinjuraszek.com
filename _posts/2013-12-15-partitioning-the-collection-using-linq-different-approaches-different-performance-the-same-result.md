@@ -10,7 +10,7 @@ Another blog post inspired by a [StackOverflow question](http://stackoverflow.co
 
 The idea is simple. **How to partition a collection into parts with given number of elements in ever part?** Algorithm presented in the question is as easy as the questions seems to be:
 
-```
+```csharp
 public IEnumerable<IEnumerable<T>> Partition<T>(IEnumerable<T> source, int size)
 {
     if (source == null)
@@ -32,7 +32,7 @@ public IEnumerable<IEnumerable<T>> Partition<T>(IEnumerable<T> source, int size)
 
 Question is, is the algorithm good and efficient? It returns correct results, that’s for sure. But that’s not the only important part of every algorithm. Unfortunately, I must say that **the algorithm is no good**. To answer why it’s no a good algorithm? I’d like to show you another approach on solving the same problem:
 
-```
+```csharp
 public IEnumerable<IEnumerable<T>> Partition<T>(IEnumerable<T> source, int size)
 {
     var partition = new List<T>(size);
@@ -66,7 +66,7 @@ Is has exactly the same signature and returns exactly the same results. **Why is
 
 If you look closer, all these actually means the same: **the second method is much faster!** How much? A lot :) Look at the charts. They show execution time depending on number of partitions that need to be created. Source collections have 1000000 elements and they are created using following code:
 
-```
+```csharp
 var enumSource = Enumerable.Range(0, size);
 var arraySource = enumSource.ToArray();
 var listSource = arraySource.ToList();

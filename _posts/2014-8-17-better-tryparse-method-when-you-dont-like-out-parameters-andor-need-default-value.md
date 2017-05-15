@@ -10,20 +10,20 @@ How many times in your code do you need to parse strings to primitive values? I 
 
 The main problem I have with every TryParse method from BCL is that they all use `out` parameter to return parsed value. **That’s because the return value indicated how successful the parsing was, not what is the result of that operation.** Because of that, you have to declare a variable to store result in separate line:
 
-```
+```csharp
 DateTime value;
 DateTime.TryParse(inputString, out value);
 ```
 
 With C# 6 and inline variable declarations, you’ll be able to write following:
 
-```
+```csharp
 DateTime.TryParse(inputString, out DateTime value);
 ```
 
 But there is still one issue that is not easy to deal with: **how can I specify a default value**, which should be used when parsing fails? You have to use if statement:
 
-```
+```csharp
 DateTime value;
 if(!DateTime.TryParse(inputString, out value))
 {
@@ -33,7 +33,7 @@ if(!DateTime.TryParse(inputString, out value))
 
 This one is not possible with inline variable declaration, because value would get scoped to the scope of if statement, which would make it quite unusable:
 
-```
+```csharp
 if(!DateTime.TryParse(inputString, out DateTime value))
 {
     value = DateTime.Now;
@@ -49,7 +49,7 @@ Setting the default value before calling TryParse will not help either because, 
 So how can you make it better? You can declare your own `TryParse` method! But how can I make it work without
 `out` parameter? I suggest using `Nullable<T>` instead!
 
-```
+```csharp
 public static class DateTimeUtils
 { 
     public static DateTime? TryParse(string value)
@@ -64,13 +64,13 @@ public static class DateTimeUtils
 
 Why do I think it’s better? **Let’s look how you can use it!**
 
-```
+```csharp
 DateTime myDateTime = DateTimeUtils.TryParse(myString) ?? DateTime.Now;
 ```
 
 Much clearer, isn’t it? You can go further, and **hide default value inside utility method as well**:
 
-```
+```csharp
 public static DateTime TryParse(string value, DateTime defaultValue)
 {
     return DateTimeUtils.TryParse(value) ?? defaultValue;
@@ -79,13 +79,13 @@ public static DateTime TryParse(string value, DateTime defaultValue)
 
 This way you don’t have to use `??` operator:
 
-```
+```csharp
 DateTime myDateTime = DateTimeUtils.TryParse(myString, DateTime.Now);
 ```
 
 Of course, there are cases when the standard `TryParse` is better. E.g. when you need to stop further lines of code from evaluating when parsing fails
 
-```
+```csharp
 DateTime value;
 if(!DateTime.TryParse(inputString, out value))
 {
@@ -95,7 +95,7 @@ if(!DateTime.TryParse(inputString, out value))
 
 But even then you can use `Nullable<T>.HasValue` instead:
 
-```
+```csharp
 DateTime? value = DateTimeUtils.TryParse(inputString)
 if(!value.HasValue)
 {
