@@ -14,7 +14,7 @@ But anyway. The more I dig into it, the more weird behaviors I experienced. And 
 
 As mentioned before, you can already **add a folder to F# project manually modifying project file**. Let’s start with an empty *F# Library* project structure:
 
-![Empty F# Library](images/folders-solution-explorer.png)
+![Empty F# Library](../../images/folders-solution-explorer.png)
 
 If you look into project file itself, either using different editor or using *Unload Project -> Edit ***.fsproj* you’ll see that it’s just an XML file with different kind of information about your project. A part which is important in our case it this one:
 
