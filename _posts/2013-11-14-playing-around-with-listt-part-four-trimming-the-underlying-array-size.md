@@ -1,8 +1,10 @@
 ---
 layout: post
-title: test!
+title: Playing around with List&lt;T&gt;, part four - trimming the underlying array size
 excerpt_separator: <!--more-->
 ---
+
+ 
 
 The last part of the series was all about increasing underlying array size. This time, I’ll try to investigate something slightly different. Question is simple: **Is the underlying array shrunk when you remove elements from the list?** Let’s find that out!
 
