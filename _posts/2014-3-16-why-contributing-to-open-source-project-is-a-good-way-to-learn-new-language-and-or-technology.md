@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Introducing CloneExtensions .NET cloning library
+title: Why contributing to an Open Source project is a good way to learn new language and/or technology
 excerpt_separator: <!--more-->
 ---
 
