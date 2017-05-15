@@ -38,7 +38,7 @@ It contains list of files project is build from, in exact **same order they appe
 
 Saving the file will cause Visual Studio to show a dialog saying, that project file had changed from outside the environment and it has to be reloaded. Reloading shows your new project structure:
 
-![New project structure](images/folder-WithUtils.png)
+![New project structure](../../images/folder-WithUtils.png)
 
 Looks cool. Problem is, **there is no a single file or folder created on your disc!** If you try to build the project, you’ll see following errors:
 
@@ -62,11 +62,11 @@ To change that order, you have to modify project file again, and move some files
 
 That kind of structure will give you an error when you try loading it in Visual Studio:
 
-![Incorrect configuration](images/folders-Incorrect.png)
+![Incorrect configuration](../../images/folders-Incorrect.png)
 
 Getting back to correct structure. When you already have a folder, you can add new files to it using *Right click -> Add -> New Item*. **Most of the time it will be added correctly**. What might be surprising, you can also easily add subfolder to already existing one using Visual Studio UI! Standard *Right click -> Add -> New Folder* works just fine.
 
-![New folder](images/folders-NewFolder.png)
+![New folder](../../images/folders-NewFolder.png)
 
 But, to make that folder appear after reloading your project, it has to contain at least one file when you close your solution.
 
@@ -95,7 +95,7 @@ You’ll get exact same error saying, that *opening a project would cause a fold
 
 Another interesting issue I found is connected to *Add Above* and *Add Below* commands. Trying to add new item above `Utils\\Reflection.fs` makes the project structure look like that:
 
-![Add Above/Below](images/folders-AddAbove.png)
+![Add Above/Below](../../images/folders-AddAbove.png)
 
 Not even close to what you’d expect, is it?
 
