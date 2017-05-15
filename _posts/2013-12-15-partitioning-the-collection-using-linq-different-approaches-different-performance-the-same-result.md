@@ -6,6 +6,8 @@ excerpt_separator: <!--more-->
 
 Another blog post inspired by a [StackOverflow question](http://stackoverflow.com/q/20556678/1163867). This time it’s all about LINQ, performance and a tiny little detail, that really matters. The question itself is about `yield` keyword in VB.NET, but there is another, much more interesting part I’d like to examine. The algorithm quoted in the question is the key.
 
+<!--more-->
+
 The idea is simple. **How to partition a collection into parts with given number of elements in ever part?** Algorithm presented in the question is as easy as the questions seems to be:
 
 ```
