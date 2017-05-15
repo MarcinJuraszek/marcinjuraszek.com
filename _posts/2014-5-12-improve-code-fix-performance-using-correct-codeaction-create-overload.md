@@ -6,6 +6,8 @@ excerpt_separator: <!--more-->
 
 In my previous post I wrote about [solution-wide Rename Code Fix using Roslyn](http://marcinjuraszek.com/2014/05/solution-wide-rename-from-code-fix-provider-fix-async-method-naming.html), which is supposed to **analyze method declarations and suggest a fix** when method marked with  async    modifier does not have a name that ends with Async. The code I suggested works just fine, however there were some comments about **improvements that can be made to make it work better**. In this post I’m trying to address one of the suggestions, what results in seconds version of `AsyncMethodNameAnalyzer` and `AsyncMethodNameFix`.
 
+<!--more-->
+
 ## CodeAction.Create overloads
 
 When implementing `ICodeFixProvider.GetFixesAsync` method, which returns `Task<IEnumerable<CodeAction>>` you have couple possible ways to return `CodeAction` class instance. That’s because `CodeAction.Create` factory method has couple overloads you can choose from:
