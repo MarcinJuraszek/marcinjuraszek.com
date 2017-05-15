@@ -6,6 +6,8 @@ excerpt_separator: <!--more-->
 
 I’ve been working on a new feature for [Visual F# Power Tools](https://github.com/fsprojects/VisualFSharpPowerTools) extension, which would creating and maintaining folder structure within F# projects. I have to admit, **it was not a pleasure to dig into VS SDK and try to get it working**. The most annoying part: part of SDK related to Solution Explorer still uses COM interfaces… Second most annoying part: Solution Explorer complaining about completely correct project structure…
 
+<!--more-->
+
 But anyway. The more I dig into it, the more weird behaviors I experienced. And because **I don’t think I’m the only one struggling with folders in F# projects** – there are couple questions on StackOverflow about this (like [here](http://stackoverflow.com/q/5918534/1163867) and [here](http://stackoverflow.com/q/5396465/1163867)) – and because there is also a known workaround how to force VS to show folders in your project – just manually edit `.fsproj` file – I decided to write about couple of problems you may run into trying to force F# project to contain folders.
 
 ## How to do it?
