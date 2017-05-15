@@ -6,6 +6,8 @@ excerpt_separator: <!--more-->
 
 I’ve spent last two days working on my first open source .NET library named [CloneExtensions](https://cloneextensions.codeplex.com/). It gives you a smart way to clone your object instances without implementing any interface writing any additional `Clone` method at all. It uses Expression Tree to compile that `Clone` method for you right before you’re trying to use `GetClone` for given type `T` for the first time.
 
+<!--more-->
+
 Project is in early phase but even now you can use it to clone plenty of different types:
 
 - Primitive (`int`, `uint`, `byte`, `double`, `char`, etc.), known immutable types (`DateTime`, `TimeSpan`, `String`) and delegates (including `Action`, `Func<T1, TResult>`, etc)
