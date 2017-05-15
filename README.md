@@ -1,1 +1,0 @@
-Blog content for [http://marcinjuraszek.com](http://marcinjuraszek.com).
