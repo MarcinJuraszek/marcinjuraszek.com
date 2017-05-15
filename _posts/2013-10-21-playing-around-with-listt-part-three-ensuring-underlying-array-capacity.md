@@ -1,10 +1,12 @@
 ---
 layout: post
-title: Playing around with List&lt;T&gt;, part three: Ensuring underlying array capacity
+title: Playing around with List&lt;T&gt;, part three - Ensuring underlying array capacity
 excerpt_separator: <!--more-->
 ---
 
 This time on the series I’m gonna examine how `List<T>` ensures the underlying array capacity. But because it’s quite interesting topic I decided to **focus on adding new elements to the list only**, leaving deleting/clearing for the next part.
+
+<!--more-->
 
 First of all, we have to list all ways to add new elements into the list. There are four of them available:
 
