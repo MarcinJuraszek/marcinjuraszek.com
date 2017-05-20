@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Adding Matt operator to Roslyn - Part 1 - Syntax, Lexer and Parser
+title: Adding Matt operator to Roslyn - Syntax, Lexer and Parser
 excerpt_separator: <!--more-->
 ---
 
