@@ -414,8 +414,13 @@ I tried proving that by launching the project. It will start a new instace of Vi
 
 ![Bind error in VS](../../images/roslyn-bind-error.png)
 
+Well, we'll try to fix that later.
+
 #### Next steps
 
 To summarize - I think you'll agree that all the changes are quite simple. However, overall it took me few hours to get it all working. That's mainly because I had no previous experience with Roslyn codebase. I'm sure somebody with good understanding of the project could implement all of that in several minutes.
 
 I learned a lot already, but that's definitely not the end of my exploration in Roslyn codebase. The next goal -> implement the right binding and emit the correct IL code to actually call `matt` command in CLR!
+
+
+*PS. All of the above changes can be reviewed on GitHub in [marcinjuraszek/Roslyn](https://github.com/MarcinJuraszek/roslyn/tree/mattOperator) - see [lexing and parsing](https://github.com/MarcinJuraszek/roslyn/commit/adab7844f04f858405ee259a083f7880f9a071cc)* commit for a diff.
