@@ -8,7 +8,7 @@ I read a very interesting blog post by Matt Warren yesterday morning: *[Adding a
 
 > The other reason for naming it matt is that I’d really like someone to make a version of the C# (Roslyn) compiler that allows you to write code like this:
 >
-> ```
+> ```csharp
 > Console.WriteLine("{0} m@ {1} = {2}", 1, 7, 1 m@ 7)); // prints '1 m@ 7 = 7'
 > ```
 >
