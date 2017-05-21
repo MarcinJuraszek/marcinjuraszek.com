@@ -424,3 +424,5 @@ I learned a lot already, but that's definitely not the end of my exploration in 
 
 
 *PS. All of the above changes can be reviewed on GitHub in [marcinjuraszek/Roslyn](https://github.com/MarcinJuraszek/roslyn/tree/mattOperator) - see [lexing and parsing](https://github.com/MarcinJuraszek/roslyn/commit/adab7844f04f858405ee259a083f7880f9a071cc)* commit for a diff.
+
+PS2. **The second part of the series is now out: [Adding Matt operator to Roslyn - Binding](adding-matt-operator-to-roslyn-part-2.html)**.
