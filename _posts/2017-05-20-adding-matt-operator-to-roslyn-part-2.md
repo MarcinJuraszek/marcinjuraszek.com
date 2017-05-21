@@ -320,7 +320,7 @@ var x = 1 m@ 2d;
 
 A set of exceptions guided me towards couple more place where we have to make the compiler aware of Matt operator.
 
-![Error when using Matt operator with a double](../../images/roslyn-double-error.pnd)
+![Error when using Matt operator with a double](../../images/roslyn-double-error.png)
 
 `BuiltInOperators.GetSimpleBuiltInOperators`:
 
