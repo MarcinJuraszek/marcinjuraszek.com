@@ -4,9 +4,11 @@ title: Adding Matt operator to Roslyn - Emitter
 excerpt_separator: <!--more-->
 ---
 
-The last missing piece to get a new operator: `m@` (*matt*) into C# and Roslyn - Emitter. That's the piece that translates C# code into [IL](https://en.wikipedia.org/wiki/Common_Intermediate_Language), which is than run by the runtime. It's building on the changes I previously made to teach [Lexer, Parser](adding-matt-operator-to-roslyn-part-1.html) and [Binder](adding-matt-operator-to-roslyn-part-2.html) about `Matt` operator.
+The last missing piece to get a new operator: `m@` (*matt*) into C# and Roslyn - Emitter. That's the piece that translates C# code into [IL](https://en.wikipedia.org/wiki/Common_Intermediate_Language), which is than run by the runtime.
 
 <!--more-->
+
+This post and all changes described here build on top of the changes I previously made to teach [Lexer, Parser](adding-matt-operator-to-roslyn-part-1.html) and [Binder](adding-matt-operator-to-roslyn-part-2.html) about `Matt` operator.
 
 ### The End Goal
 
