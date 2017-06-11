@@ -409,3 +409,5 @@ That's totally expected though. We haven't yet touched the last part of Roslyn p
 *PS. All the code changes described in this post can be viewed on GitHub: [MarcinJuraszek/roslyn/commit/6d9b2aad5ec78d314749b088697c5a28fe9f6b15](https://github.com/MarcinJuraszek/roslyn/commit/6d9b2aad5ec78d314749b088697c5a28fe9f6b15?diff=unified).*
 
 *PS.2. When looking through the code I noticed that if we wanted to make `Matt` overridable we'd also have to modify `PEMethodSymbol.ComputeMethodKind`. For us, the default value works just fine, so I decided not to touch it. But just saying, in case somebody wants to push it further and allow for custom operators to be defined.*
+
+PS.3. **The third part of the series is now out: [Adding Matt operator to Roslyn - Emitter](adding-matt-operator-to-roslyn-part-3.html)**.
