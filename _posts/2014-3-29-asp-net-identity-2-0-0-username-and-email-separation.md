@@ -54,15 +54,15 @@ var user = new ApplicationUser { UserName = model.UserName, Email = model.Email 
 
 With these changes we now have additional field on registration page:
 
-![Registration form](../../images/asp-name-Registration.png)
+![Registration form](../../images/asp-net-identity/Registration.png)
 
 We can also confirm that registration works fine and both email and username are being saved looking into the database used by our application:
 
-![Database view](../../images/asp-name-UsersTable.png)
+![Database view](../../images/asp-net-identity/UsersTable.png)
 
 ASP.NET Identity also **checks that username is unique** when user is trying to register and shows appropriate error message when you try register with already taken username:
 
-![Uniqueness](../../images/asp-name-UserNameDuplication.png)
+![Uniqueness](../../images/asp-net-identity/UserNameDuplication.png)
 
 ### Login page
 
@@ -124,11 +124,11 @@ public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
 
 There changes allow us to log in using username instead of email.
 
-![Loging form](../../images/asp-name-LogIn.png)
+![Loging form](../../images/asp-net-identity/LogIn.png)
 
 If you’d like to provide option to log in with username or email, check this post: [ASP.NET Identity 2.0 – Logging in with Email or Username](http://anthonychu.ca/post/aspnet-identity-20---logging-in-with-email-or-username). After logging in you can see that your **username is shown on the right side of top navigation bar**. By default there is an email shown there instead.
 
-![Top-bar](../../images/asp-name-topbar.png)
+![Top-bar](../../images/asp-net-identity/topbar.png)
 
 ###Password recovery
 

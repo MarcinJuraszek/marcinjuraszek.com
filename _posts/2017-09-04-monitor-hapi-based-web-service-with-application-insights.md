@@ -115,7 +115,7 @@ While in production you'd like the telemetry to be batched on the server and onl
 How do we check if the data was sent to Application Insights?
 You can log to your Azure account, navigate to your Application Insights instance and *Analytics* to open data explorer.
 
-![Application Insights Analytics in Azure Portal](../../images/app-insights-portal.png)
+![Application Insights Analytics in Azure Portal](../../images/hapi-app-insights/portal.png)
 
 In data explorer you can create a new quest and try fetching all the request data for last 5 minutes by running following query:
 
@@ -125,7 +125,7 @@ requests | where timestamp > ago(5m)
 
 If it worked you should see request information returned:
 
-![Application Insights Analytics - request details](../../images/app-insights-requests.png)
+![Application Insights Analytics - request details](../../images/hapi-app-insights/requests.png)
 
 With just few lines of code you get a lot of useful request information including browser data, location information, performance metrics and more.
 

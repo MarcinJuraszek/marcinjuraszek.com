@@ -90,7 +90,7 @@ You can send requests to the function from within the UI, see log output and the
 With that I was able to code the entire thing in the browser, without any issues.
 If the code doesn't compile output windows will also show you the compilation errors to make iterating on function logic easier.
 
-![Azure Functions UI in Azure Portal](../../images/azure-functions-ui.png)
+![Azure Functions UI in Azure Portal](../../images/datetimeformat-info-azure-functions/azure-functions-ui.png)
 
 If you don't want to use the UI you can also precompile your functions locally and deploy them as dlls. See [Using .NET class libraries with Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-class-library) for details on that.
 
@@ -104,7 +104,7 @@ I also updated the JavaScript to point at the HTTP endpoint my function is expos
 Once I merged it to master branch in my GitHub repo I was ready to enabled GitHub pages feature in repository settings.
 I made sure to specify my custom domain and pointed at `/docs` folder in my master branch as the place where my site content is:
 
-![GitHub Pages configuration for DateTimeFormat.Info](../../images/github-pages.png)
+![GitHub Pages configuration for DateTimeFormat.Info](../../images/datetimeformat-info-azure-functions/github-pages.png)
 
 I also updated my DNS records to point at GitHub servers instead of the IPs I used for Azure-hosted website.
 You can find instructions on how to configure that in GitHub documentation: [Using a custom domain with GitHub Pages](https://help.github.com/articles/using-a-custom-domain-with-github-pages/).
@@ -113,7 +113,7 @@ Once the DNS change propagated I could see my page being served from GitHub!
 How did I know that was the case?
 Because it didn't work :)
 
-![DateTimeFormat.Info not working because of CORS](../../images/datetimeformat-info-error.png)
+![DateTimeFormat.Info not working because of CORS](../../images/datetimeformat-info-azure-functions/datetimeformat-info-error.png)
 
 Where that large black dash is a properly-formatted DateTime instance should be displayed instead.
 Developer Tools in my browser clearly showed that a request to my function was triggered, but was being blocked because of CORS restriction:
@@ -130,16 +130,16 @@ But that's something you can turn on for the domains you expect to be targeting 
 To do so click on the name of the functions app your function is part of and go to **Platform Features** tab.
 Once there you'll find **CORS** option which will open a new panel where you can configure allowed origins for your functions app.
 
-![Platform Features tab for Azure Functions App](../../images/azure-functions-platform-features.png)
+![Platform Features tab for Azure Functions App](../../images/datetimeformat-info-azure-functions/azure-functions-platform-features.png)
 
 That configuration is bound to the functions app, so adding or removing a domain there will affect all the functions in that app.
 I simply added *http://datetimeformat.info* and *https://datetimeformat.info* to the list, saved and it had an immediate effect.
 
-![CORS configuration for Azure Functions App](../../images/azure-functions-cors.png)
+![CORS configuration for Azure Functions App](../../images/datetimeformat-info-azure-functions/azure-functions-cors.png)
 
 Now, when going to http://datetimeformat.info I can see the page working as expected:
 
-![DateTimeFormat.Info working correctly again!](../../images/datetimeformat-info-ok.png)
+![DateTimeFormat.Info working correctly again!](../../images/datetimeformat-info-azure-functions/datetimeformat-info-ok.png)
 
 ## Summary
 

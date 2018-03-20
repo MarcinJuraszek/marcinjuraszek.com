@@ -12,21 +12,21 @@ Official ASP.NET 5 documentation contains a tutorial how to [use Grunt to compil
 
 Let’s start with new ASP.NET 5 project created in Visual Studio 2015 Preview using *File > New Project > Visual C# > Web > ASP.NET Web Application* and selecting **“ASP.NET 5.0 Starter Web”** from the list of available Web projects.
  
-![New project](../../images/typescript-NewProject.png)
+![New project](../../images/typescript-pipeline/NewProject.png)
 
-![New ASP.NET Project](../../images/typescript-AspProjectType.png)
+![New ASP.NET Project](../../images/typescript-pipeline/AspProjectType.png)
 
 As you will probably notice when solution is created folder structure is quite different than what you should know from previous ASP.NET projects. However, I will not focus on describing what’s the role of particular folders and files. You should know that **there are two files important for Grunt: gruntfile.js and package.js**.
 
-![Solution Structure](../../images/typescript-SolutionStructure.png)
+![Solution Structure](../../images/typescript-pipeline/SolutionStructure.png)
 
 But we’ll get to them later. Let’s create TypeScript file we’d like to compile. I’m going to create new directory in the solution called Scripts. **It will be place for all TypeScript files in my application.** To keep things simple I will create just one file: myApp.ts which will have a simple TypeScript function. Unfortunately TypeScript is not available within *New Item* dialog. You have to pick different one (e.g. Text File) and manually change file extension to *.ts*.
 
-![Add New Item](../../images/typescript-AddTypeScriptFile.png)
+![Add New Item](../../images/typescript-pipeline/AddTypeScriptFile.png)
 
 After doing so you could see new file in solution explorer
 
-![myAppFile](../../images/typescript-myAppFile.png)
+![myAppFile](../../images/typescript-pipeline/myAppFile.png)
 
 Function I’d like to compile to JavaScript is really simple
 
@@ -38,11 +38,11 @@ function longerThan10(value: string): boolean {
 
 OK, back to *package.json* and *gruntfile.js*. We’re going to use *package.json* to import grunt packages that will perform TypeScript compilation. **Packages we need are grunt-typescript and typescript and we can add them by modifying *package.json* file.** Visual Studio editor will help you with nice intellisence suggesting correct package name and latest available versions.
 
-![Package.json](../../images/typescript-PackageJson.png)
+![Package.json](../../images/typescript-pipeline/PackageJson.png)
 
 Now we have to download the packages using context menu invoked when right clicked on NPM in Solution Explorer and selecting *Restore Packages*.
 
-![Restore packages](../../images/typescript-RestorePackages.png)
+![Restore packages](../../images/typescript-pipeline/RestorePackages.png)
 
 As you’ll notice both packages added to package.json will show up on the list as *(not installed)*. **That comment should go away when you restore the packages.**
 
@@ -92,15 +92,15 @@ module.exports = function (grunt) {
 
 Now we can run the task to make sure it does what we want it to do. There is a new window added to Visual Studio called **Task Runner Explorer**. You can invoke if from *View > Other Windows > Task Runner Explorer*. It’s show you all tasks defined in your solution, let you ran them and set bindings to run tasks automatically pre or after build. Right click on typescript and select Run to run the task and compile your TypeScript code to JavaScript.
 
-![Task Runner Explorer](../../images/typescript-TaskRunnerExplorer.png)
+![Task Runner Explorer](../../images/typescript-pipeline/TaskRunnerExplorer.png)
 
 If you did everything right you should see run results saying  that *wwwroot\app.js* file was created
 
-![Run results](../../images/typescript-RunResults.png)
+![Run results](../../images/typescript-pipeline/RunResults.png)
 
 and new file should show up in Solution Explorer
 
-![myAppJs](../../images/typescript-myAppJs.png)
+![myAppJs](../../images/typescript-pipeline/myAppJs.png)
 
 It will contain our TypeScript function compiled to JavaScript:
 
@@ -112,6 +112,6 @@ function longerThan10(value) {
 
 To make it more natural you can set the task to run every time Build is performed Using** Bindings > After Build** option.
 
-![Post Build Binding](../../images/typescript-PostBuildBinding.png)
+![Post Build Binding](../../images/typescript-pipeline/PostBuildBinding.png)
 
 To confirm that it works you can either change source in myApp.ts and rebuild – *app.js* content should change as well. You can also remove app.js. Performing a build should make it appear again.

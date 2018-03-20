@@ -33,7 +33,7 @@ public class Class1
 
 With that Visual Studio fails with an exception:
 
-![Bind error in VS](../../images/roslyn-bind-error.png)
+![Bind error in VS](../../images/matt-operator-roslyn/bind-error.png)
 
 And after fixing this one, another similar one came, and so on. I won't show all of them, but instead focus on the changes necessary to make them go away.
 
@@ -229,11 +229,11 @@ private static readonly BinaryOperatorKind[][,] s_opkind =
 ```
 With all these changes Visual Studio is a bit happier when loading a C# file where `m@` is being used. It is able to correctly identify the return value of `1 m@ 2` as `int`:
 
-![Matt operator used in Visual Studio](../../images/roslyn-matt-int.png)
+![Matt operator used in Visual Studio](../../images/matt-operator-roslyn/matt-int.png)
 
 However, as soon as we hover over the operator itself, things stop looking that good.
 
-![Error when hovering over Matt operator in Visual Studio](../../images/roslyn-bind-name-error.png)
+![Error when hovering over Matt operator in Visual Studio](../../images/matt-operator-roslyn/bind-name-error.png)
 
 ### Operator Name
 
@@ -308,7 +308,7 @@ public static SyntaxKind GetOperatorKind(string operatorMetadataName)
 
 With these changes, Visual Studio shows the right tooltip!
 
-![Matt operator property displayed in Visual Studio tooltip](../../images/roslyn-matt-tooltip.png)
+![Matt operator property displayed in Visual Studio tooltip](../../images/matt-operator-roslyn/matt-tooltip.png)
 
 ### Trying to use `m@` with non-`int` arguments
 
@@ -320,7 +320,7 @@ var x = 1 m@ 2d;
 
 A set of exceptions guided me towards couple more place where we have to make the compiler aware of Matt operator.
 
-![Error when using Matt operator with a double](../../images/roslyn-double-error.png)
+![Error when using Matt operator with a double](../../images/matt-operator-roslyn/double-error.png)
 
 `BuiltInOperators.GetSimpleBuiltInOperators`:
 
@@ -398,11 +398,11 @@ private void GetEnumOperations(BinaryOperatorKind kind, BoundExpression left, Bo
 
 Looks like these are all the changes needed to make Visual Studio somehow happy. It's able to correctly parse the code, figure out that `m@` can only be used with `int`s, (the return type can't be resolved out if used with non-`int` input) + the right help tooltip is shown when hovered over the new operator. Not bad!
 
-![Compiler failing to resolve Matt operator on double](../../images/roslyn-double-tooltip.png)
+![Compiler failing to resolve Matt operator on double](../../images/matt-operator-roslyn/double-tooltip.png)
 
 Things go south when you try to actually compile the code as part of a project. csc.exe exits with an error code, which is handled by Visual Studio and an exception is thrown.
 
-![csc.exe failing to compile code with Matt operator](../../images/roslyn-compile-error-255.png)
+![csc.exe failing to compile code with Matt operator](../../images/matt-operator-roslyn/compile-error-255.png)
 
 That's totally expected though. We haven't yet touched the last part of Roslyn pipeline - the Emmiter. That's where IL is generated. But that's a topic for next post!
 

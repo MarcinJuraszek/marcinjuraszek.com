@@ -8,7 +8,7 @@ Last time when I posted about [Diagnostic with Code Fix](http://marcinjuraszek.c
 
 <!--more-->
 
-![A Tweet by Luke Sigler](../../images/roslyn-tweet.png)
+![A Tweet by Luke Sigler](../../images/matt-operator-roslyn/tweet.png)
 
 Idea is very simple: Diagnostic checks every declared method and makes sure, that those marked with async modifier have a name that ends with Async. If not, CodeFix is proposed to fix that issue.
 

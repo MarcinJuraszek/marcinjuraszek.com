@@ -14,7 +14,7 @@ But anyway. The more I dig into it, the more weird behaviors I experienced. And 
 
 As mentioned before, you can already **add a folder to F# project manually modifying project file**. Let’s start with an empty *F# Library* project structure:
 
-![Empty F# Library](../../images/folders-solution-explorer.png)
+![Empty F# Library](../../images/fsharp-folders/solution-explorer.png)
 
 If you look into project file itself, either using different editor or using *Unload Project -> Edit ***.fsproj* you’ll see that it’s just an XML file with different kind of information about your project. A part which is important in our case it this one:
 
@@ -62,11 +62,11 @@ To change that order, you have to modify project file again, and move some files
 
 That kind of structure will give you an error when you try loading it in Visual Studio:
 
-![Incorrect configuration](../../images/folders-Incorrect.png)
+![Incorrect configuration](../../images/fsharp-folders/Incorrect.png)
 
 Getting back to correct structure. When you already have a folder, you can add new files to it using *Right click -> Add -> New Item*. **Most of the time it will be added correctly**. What might be surprising, you can also easily add subfolder to already existing one using Visual Studio UI! Standard *Right click -> Add -> New Folder* works just fine.
 
-![New folder](../../images/folders-NewFolder.png)
+![New folder](../../images/fsharp-folders/NewFolder.png)
 
 But, to make that folder appear after reloading your project, it has to contain at least one file when you close your solution.
 
@@ -95,7 +95,7 @@ You’ll get exact same error saying, that *opening a project would cause a fold
 
 Another interesting issue I found is connected to *Add Above* and *Add Below* commands. Trying to add new item above `Utils\\Reflection.fs` makes the project structure look like that:
 
-![Add Above/Below](../../images/folders-AddAbove.png)
+![Add Above/Below](../../images/fsharp-folders/AddAbove.png)
 
 Not even close to what you’d expect, is it?
 

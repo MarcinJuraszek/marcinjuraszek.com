@@ -22,7 +22,7 @@ First of all, I forked and cloned [Roslyn repo](https://github.com/dotnet/roslyn
 
 At the beginning I had not the slightest idea on where to start. Roslyn project is quite big. Because of that, instead of trying to just go write the new operator all over the place and hope that it works, I started by exploring what the main pieces of Roslyn pipeline are. I found following documentation page quite informative: [.NET Compiler Platform (“Roslyn”) Overview](https://github.com/dotnet/roslyn/wiki/Roslyn%20Overview). Here is a high-level compiler pipeline diagram:
 
-![Roslyn Compiler pipeline](../../images/roslyn-pipeline.png)
+![Roslyn Compiler pipeline](../../images/matt-operator-roslyn/pipeline.png)
 
 That kind of gave me the idea of what I should start looking for.
 
@@ -63,7 +63,7 @@ MattToken = 8284,
 
 Right when I did that, Visual Studio showed red squiggles, which means I was missing something. The good thing is, Roslyn comes with some Analyzers and Code Fixes, which turned out to be very helpful in that situation:
 
-![Add Token CodeFix](../../images/roslyn-add-token.png)
+![Add Token CodeFix](../../images/matt-operator-roslyn/add-token.png)
 
 With the help of that Code Fix `MattToken` was added to *\roslyn\src\Compilers\CSharp\Portable\PublicAPI.Unshipped.txt*
 
@@ -412,7 +412,7 @@ With that last fix all the Unit Tests are passing, which means Roslyn now knows 
 
 I tried proving that by launching the project. It will start a new instace of Visual Studio which will use Roslyn compiler built from our local code. I planned to use  [Syntax Visualizer] to  inspect the syntax tree and expected to see `MattExpression` and `MattToken` there, but unfortunately VS throws exceptions because Binder doesn't know how to deal with that new command:
 
-![Bind error in VS](../../images/roslyn-bind-error.png)
+![Bind error in VS](../../images/matt-operator-roslyn/bind-error.png)
 
 Well, we'll try to fix that later.
 
