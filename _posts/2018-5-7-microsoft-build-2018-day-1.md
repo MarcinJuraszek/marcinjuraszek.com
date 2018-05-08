@@ -70,8 +70,6 @@ You should definitely watch it if you haven't already:
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">When <a href="https://twitter.com/shanselman?ref_src=twsrc%5Etfw">@shanselman</a>&#39;s hands-free microphone stops working, a helpful tech comes on stage to assist. 😉 <a href="https://twitter.com/scottgu?ref_src=twsrc%5Etfw">@scottgu</a><br>Watch LIVE here: <a href="https://t.co/dB1136u4X2">https://t.co/dB1136u4X2</a> <a href="https://twitter.com/hashtag/MSBuild?src=hash&amp;ref_src=twsrc%5Etfw">#MSBuild</a> <a href="https://t.co/b8g1lfpaP5">pic.twitter.com/b8g1lfpaP5</a></p>&mdash; Microsoft Channel 9 (@ch9) <a href="https://twitter.com/ch9/status/993559448982470656?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-There is also an extra part not captured in that tweet, so you should probably watch the entire thing on [official Microsoft Build website](https://developer.microsoft.com/en-us/events/build). "The Grand Mic Fail of MSBuild 2018" starts at 2:28:55.
-
 ### Breakout sessions
 
 I attended two breakout sessions today but I'm only going to write about one of them as the other one wasn't that interesting.
