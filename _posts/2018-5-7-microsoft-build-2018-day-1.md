@@ -25,10 +25,10 @@ I'm glad I was able to skip all that and head over to see the Keynote.
 
 Speaking of the keynote, **if you haven't seen it you should!** It's available on [official Microsoft Build website](https://developer.microsoft.com/en-us/events/build) and on [YouTube](https://www.youtube.com/watch?v=rd0Rd8w3FZ0).
 
-It started with some very interesting thoughts on Privacy (including GDPR), Security and Ethics.
-I really liked considering Privacy to be a Human Right.
+It started with Satya sharing some thoughts on Privacy (including GDPR), Security and Ethics.
+I really liked how he considers Privacy to be a Human Right.
 I also loved Satya saying that ***we should ask ourselves not only what computers can do but also what computers should do***.
-It's definitely every developer should keep in mind when writing software, not just AI.
+It's definitely something every developer should keep in mind when writing software, not just AI.
 
 Later on it was very interesting to see how much time during the keynote was dedicated to Intelligence.
 I guess this whole "Intelligent Cloud, Intelligent Edge" thingy is not just words but actual commitment to products and services allowing people to do things much better, safer and in more efficient manner.
