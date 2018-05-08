@@ -14,6 +14,9 @@ First of all, the conference is just massive. There are about 6000 people attend
 That's a lot of people and definitely the biggest conference I've even been to.
 
 I decided to register pick my badge on Sunday and I have to say that was an excellent idea.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">In case you were wondering, I am attending <a href="https://twitter.com/msbuild?ref_src=twsrc%5Etfw">@MSBuild</a> this week! :) And I&#39;m blogging about it too. Stay tuned for a Day 1 recap soon! <a href="https://t.co/eaefOxtVgq">pic.twitter.com/eaefOxtVgq</a></p>&mdash; Marcin Juraszek (@mmjuraszek) <a href="https://twitter.com/mmjuraszek/status/993717998425800706?ref_src=twsrc%5Etfw">May 8, 2018</a></blockquote> 
+
 When I showed up this morning the lines for registration were just crazy.
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Yikes! In line for registration. Does this line ever end? <a href="https://twitter.com/hashtag/MSBuild?src=hash&amp;ref_src=twsrc%5Etfw">#MSBuild</a> <a href="https://twitter.com/hashtag/MRjam?src=hash&amp;ref_src=twsrc%5Etfw">#MRjam</a> <a href="https://t.co/Ow8vSnlj9U">pic.twitter.com/Ow8vSnlj9U</a></p>&mdash; Sean Ong (@sean_ong) <a href="https://twitter.com/sean_ong/status/993510082380943361?ref_src=twsrc%5Etfw">May 7, 2018</a></blockquote>
