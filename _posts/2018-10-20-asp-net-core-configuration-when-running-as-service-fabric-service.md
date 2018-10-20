@@ -8,7 +8,7 @@ When you create an ASP.NET Core Stateless Service for Service Fabric an `appsett
 It might surprise you, but if **you run the template service the settings from that file won't be available for you to use in the code!**
 In this post I'll show you how to make the service respect that file and allow you access the config values from it.
 I'll also talk about the difference between loading the `appsettings.json` file from Code or Config package and why you might care.
-<!-- more -->
+<!--more-->
 
 Let's start by adding an empty **Stateless ASP.NET Core** service to a Service Fabric application.
 I'm targetting full .NET Framework, but the same applies to a service running against .NET Core.
