@@ -34,7 +34,7 @@ As you can see all that you get by default is coming from the environment variab
 
 Turns out it's fairly easy.
 All we need is manually add a `JsonConfigurationProvider` instance to the `ConfigurationBuilder` during initialization.
-The easiest way to do that is by modifying the `WebHost` setup in `CreateServiceInstanceListener` method of our service definition (in my sample that's `CreateServiceIn `StatelessAspNetCore` class):
+The easiest way to do that is by modifying the `WebHost` setup in `CreateServiceInstanceListener` method of our service definition (in my sample that's `StatelessAspNetCore` class):
 
 ```cs
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -74,11 +74,11 @@ The important part of here:
 })
 ```
 
-It adds the `appsettings.json` file to the configuration chain, which we can confirm after restarting the service and checking the same `configuration` object in `Startup` class constructor:
+**It adds the `appsettings.json` file to the configuration chain**, which we can confirm after restarting the service and checking the same `configuration` object in `Startup` class constructor:
 
 ![Configuration details - after](../../images/service-fabric-asp-net-core-config/configuration-details-after.PNG)
 
-We have a new provider, which adds two more settings - exactly what's in the default `appsettings.json` file:
+**We have a new provider, which adds two more settings** - exactly what's in the default `appsettings.json` file:
 
 ```json
 {
