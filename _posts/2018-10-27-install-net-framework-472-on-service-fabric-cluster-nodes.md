@@ -10,7 +10,7 @@ And the reason is **you're probably running Visual Studio version which defaults
 In this post I'll show you how to fix it using Custom Script VM Extension.
 <!--more-->
 
-To show what I mean I created a new Service Fabric cluster on Azure and created a new, blank Azure Service Fabric Application in Visual Studio with a single Stateless Service targetting .NET Framework 4.7.1:
+To show what I mean I created a new Service Fabric cluster on Azure and created a new, blank Azure Service Fabric Application in Visual Studio with a single Stateless Service targeting .NET Framework 4.7.1:
 
 ![New Service Fabric application](../../images/service-fabric-net-framework/new-service-fabric-app-net-471.PNG)
 
