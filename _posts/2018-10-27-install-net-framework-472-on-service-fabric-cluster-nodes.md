@@ -76,6 +76,6 @@ Once it's done you'll see a notification of completion:
 ![VM Extension installed](../../images/service-fabric-net-framework/installed-extension.PNG)
 
 After the extension installation is completed the VMs will be restarted and it'll take few minutes for the cluster to be accessible again.
-Once the nodes are again joined into the cluster** you should see the application working just fine**
+Once the nodes are again joined into the cluster **you should see the application working just fine!**
 
 ![OK status of the application](../../images/service-fabric-net-framework/application-ok.PNG)
