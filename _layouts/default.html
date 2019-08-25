@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
     {% include meta.html %}
@@ -12,52 +13,86 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Av_n7vG2DvUayD4VC6ZCFuWOtT85UvPugL-Xt_zN4L34TMTeJcJuGboS66ROdIjF' async defer></script>
+
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 
     <script type="text/javascript">
-      var appInsights=window.appInsights||function(config){
-        function i(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),r,f;y.src=config.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)i("track"+r.pop());return i("set"+s),i("clear"+s),i(h+a),i(c+a),i(h+v),i(c+v),i("flush"),config.disableExceptionTracking||(r="onerror",i("_"+r),f=e[r],e[r]=function(config,i,u,e,o){var s=f&&f(config,i,u,e,o);return s!==!0&&t["_"+r](config,i,u,e,o),s}),t
+        var appInsights = window.appInsights || function(config) {
+            function i(config) {
+                t[config] = function() {
+                    var i = arguments;
+                    t.queue.push(function() {
+                        t[config].apply(t, i)
+                    })
+                }
+            }
+            var t = {
+                    config: config
+                },
+                u = document,
+                e = window,
+                o = "script",
+                s = "AuthenticatedUserContext",
+                h = "start",
+                c = "stop",
+                l = "Track",
+                a = l + "Event",
+                v = l + "Page",
+                y = u.createElement(o),
+                r, f;
+            y.src = config.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js";
+            u.getElementsByTagName(o)[0].parentNode.appendChild(y);
+            try {
+                t.cookie = u.cookie
+            } catch (p) {}
+            for (t.queue = [], t.version = "1.0", r = ["Event", "Exception", "Metric", "PageView", "Trace", "Dependency"]; r.length;) i("track" + r.pop());
+            return i("set" + s), i("clear" + s), i(h + a), i(c + a), i(h + v), i(c + v), i("flush"), config.disableExceptionTracking || (r = "onerror", i("_" + r), f = e[r], e[r] = function(config, i, u, e, o) {
+                var s = f && f(config, i, u, e, o);
+                return s !== !0 && t["_" + r](config, i, u, e, o), s
+            }), t
         }({
-            instrumentationKey:"6560ab67-d265-4ddf-901b-8eedc51bddb6"
+            instrumentationKey: "6560ab67-d265-4ddf-901b-8eedc51bddb6"
         });
-          
-        window.appInsights=appInsights;
+
+        window.appInsights = appInsights;
         appInsights.trackPageView();
     </script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="wrapper-masthead">
-      <div class="container">
-        <header class="masthead clearfix">
-          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+        <div class="container">
+            <header class="masthead clearfix">
+                <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+                <div class="site-info">
+                    <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+                    <p class="site-description">{{ site.description }}</p>
+                </div>
 
-          <nav>
-            <a href="{{ site.baseurl }}/about-me">About Me</a>
-            <a href="{{ site.baseurl }}/projects">Projects</a>
-            <a href="{{ site.baseurl }}/speaking">Speaking</a>
-          </nav>
-        </header>
-      </div>
+                <nav>
+                    <a href="{{ site.baseurl }}/about-me">About Me</a>
+                    <a href="{{ site.baseurl }}/projects">Projects</a>
+                    <a href="{{ site.baseurl }}/speaking">Speaking</a>
+                </nav>
+            </header>
+        </div>
     </div>
 
     <div id="main" role="main" class="container">
-      {{ content }}
+        {{ content }}
     </div>
 
     <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
+        <div class="container">
+            <footer class="footer">
+                {% include svg-icons.html %}
+            </footer>
+        </div>
     </div>
 
     {% include analytics.html %}
-  </body>
+</body>
+
 </html>
