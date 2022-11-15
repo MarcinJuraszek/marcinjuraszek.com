@@ -30,6 +30,7 @@ footer-links:
   stackoverflow: users/1163867/marcinjuraszek
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: # anything in your profile username that comes after plus.google.com/
+  mastodon: @marcinj
 
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
